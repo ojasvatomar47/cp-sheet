@@ -1,0 +1,16 @@
+# Ignore a specific file
+# myfile.txt
+
+# Ignore all files with a .log extension
+# *.log
+
+# Ignore all files in a specific directory
+# mydirectory/*
+
+# Ignore a specific directory and its contents
+# mydirectory/
+
+deb.h
+input.txt
+output.txt
+solution.cpp
