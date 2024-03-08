@@ -84,7 +84,7 @@ void solve()
     deb(sum, x);
     FAB(i, 1, n)
     {
-        // inko pata hai
+        // they already know
         if (i + 1 <= x)
         {
             if (vp[i].first < k)
@@ -95,7 +95,7 @@ void solve()
                 deb(x, sum);
             }
         }
-        // inko batana hai
+        // they need to be told
         else
         {
             x++, sum += k;
