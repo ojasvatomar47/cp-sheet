@@ -62,33 +62,37 @@ const int N = 1e7 + 5;
 
 void solve()
 {
-    // no. of unique characters within a substring of size freq. should be equal to freq.
-    string str;
-    cin >> str;
-    ll n = str.size();
-    map<char, ll> m;
+    // since ai<=1000 we can apply brute force for checking coprime numbers and play with their indices as required
+    ll n;
+    cin >> n;
+    vector<PLL> v;
+    map<ll, ll> m;
+
     FOR(i, n)
-    m[str[i]]++;
-    ll freq = m.size();
-
-    ll i = 0, j = freq - 1;
-
-    while (j < n)
     {
-        map<char, ll> temp;
-        FAB(k, i, j + 1)
+        ll x;
+        cin >> x;
+        m[x] = i + 1;
+    }
+
+    for (auto &it : m)
+        v.push_back({it.first, it.second});
+
+    reverse(v.begin(), v.end());
+    deb(v);
+
+    ll maxi = -1;
+
+    FOR(i, v.size())
+    {
+        FAB(j, i, v.size())
         {
-            temp[str[k]]++;
-        }
-        if (temp.size() == freq)
-            i++, j++;
-        else
-        {
-            no;
-            return;
+            if (__gcd(v[i].first, v[j].first) == 1)
+                maxi = max(maxi, v[i].second + v[j].second);
         }
     }
-    yes;
+
+    print(maxi);
 }
 
 int main()

@@ -62,33 +62,52 @@ const int N = 1e7 + 5;
 
 void solve()
 {
-    // no. of unique characters within a substring of size freq. should be equal to freq.
-    string str;
-    cin >> str;
-    ll n = str.size();
-    map<char, ll> m;
+    ll n, k, count = 0;
+    cin >> n >> k;
+    vector<vector<ll>> v(n, vector<ll>(n, 0)), temp(n, vector<ll>(n, 1));
+
     FOR(i, n)
-    m[str[i]]++;
-    ll freq = m.size();
-
-    ll i = 0, j = freq - 1;
-
-    while (j < n)
     {
-        map<char, ll> temp;
-        FAB(k, i, j + 1)
+        FOR(j, n)
+        cin >> v[i][j];
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
         {
-            temp[str[k]]++;
-        }
-        if (temp.size() == freq)
-            i++, j++;
-        else
-        {
-            no;
-            return;
+            temp[n - 1 - i][n - 1 - j] = v[i][j];
         }
     }
-    yes;
+    deb(n, k);
+    deb(v);
+    deb(temp);
+
+    FOR(i, n)
+    {
+        FOR(j, n)
+        {
+            count += (temp[i][j] != v[i][j]);
+        }
+    }
+
+    count /= 2;
+
+    if (count > k)
+        no;
+    else
+    {
+        ll diff = k - count;
+        if (diff & 1)
+        {
+            if (n & 1)
+                yes;
+            else
+                no;
+        }
+        else
+            yes;
+    }
 }
 
 int main()
